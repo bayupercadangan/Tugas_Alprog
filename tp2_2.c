@@ -28,13 +28,13 @@ void menu1(mahasiswa* pData, int* pTotalData) {
   *pTotalData = total;
 }
 
-void menu2(mahasiswa* pData, nilaiMahasiswa* pDataNilai,  int* pTotalData) {
+void menu2(mahasiswa* pData, nilaiMahasiswa* pDataNilai, int* pTotalData) {
   int total = *pTotalData;
   mahasiswa mhs[10];
   nilaiMahasiswa nilai[10];
   mhs[10] = *pData;
   printf("====== INPUT NILAI MAHASISWA ======= \n");
-  for (int i = 0; i <= total - 1; i++) {
+  for (int i = 0; i < total; i++) {
     printf("NIM: %d \n", mhs[i].nim);
     printf("NAMA: %s \n", mhs[i].nama);
     printf("MATA KULIAH: %s \n", mhs[i].mata_kuliah);
@@ -53,25 +53,30 @@ void menu2(mahasiswa* pData, nilaiMahasiswa* pDataNilai,  int* pTotalData) {
 }
 
 void menu3(mahasiswa* pData, nilaiMahasiswa* pDataNilai, int* pTotalData) {
+  int nim;
   int total = *pTotalData;
   mahasiswa mhs[10];
   nilaiMahasiswa nilai[10];
   mhs[10] = *pData;
   nilai[10] = *pDataNilai;
+  printf("TOTAL %d", total);
   printf("====== NILAI MAHASISWA ======= \n");
-  for (int i = 0; i <= total - 1; i++) {
-    int nilaiHadir, nilaiTugas, nilaiQuiz, nilaiForum, nilaiUas, kalkulasiNilai;
-    nilaiHadir = nilai[i].hadir * 10 / 100;
-    nilaiTugas = nilai[i].tugas * 20 / 100;
-    nilaiQuiz = nilai[i].quiz * 10 / 100;
-    nilaiForum = nilai[i].forum * 10 / 100;
-    nilaiUas = nilai[i].uas * 50 / 100;
-    kalkulasiNilai = nilaiHadir + nilaiTugas + nilaiQuiz + nilaiForum + nilaiUas;
-    printf("NIM: %d", mhs[i].nim);
-    printf("NAMA: %s", mhs[i].nama);
-    printf("MATA KULIAH: %s", mhs[i].mata_kuliah);
-    printf("NILAI: %d", kalkulasiNilai);
-    printf("\n\n");
+  printf("Masukkan NIM: "); scanf("%d", &nim);
+  for (int i = 0; i < total; i++) {
+    if (mhs[i].nim == nim) {
+      printf("NIM: %d \n", mhs[i].nim);
+      printf("NAMA: %s \n", mhs[i].nama);
+      printf("MATA KULIAH: %s \n", mhs[i].mata_kuliah);
+      int nilaiHadir, nilaiTugas, nilaiQuiz, nilaiForum, nilaiUas, kalkulasiNilai;
+      nilaiHadir = nilai[i].hadir * 10 / 100;
+      nilaiTugas = nilai[i].tugas * 20 / 100;
+      nilaiQuiz = nilai[i].quiz * 10 / 100;
+      nilaiForum = nilai[i].forum * 10 / 100;
+      nilaiUas = nilai[i].uas * 50 / 100;
+      kalkulasiNilai = nilaiHadir + nilaiTugas + nilaiQuiz + nilaiForum + nilaiUas;
+      printf("NILAI: %d", kalkulasiNilai);
+      printf("\n\n");
+    }
   }
   *pData = mhs[10];
   *pDataNilai = nilai[10];
@@ -118,6 +123,8 @@ int main () {
         break;
     }
   } while (menu != 4);
+
+  printf("\nTekan (Ctrl + C untuk Windows / Cmd + C untuk Mac) untuk keluar \n");
 
   return 0;
 }
