@@ -14,6 +14,29 @@ typedef struct NilaiMahasiswa {
   int uas;
 } nilaiMahasiswa;
 
+void checkGrade (int nilai) {
+  switch (nilai) {
+  case 50 ... 59:
+    printf("[E] Tidak Lulus %d \n", nilai);
+    break;
+  case 60 ... 69:
+    printf("[D] Lulus %d \n", nilai);
+    break;
+  case 70 ... 79:
+    printf("[C] Lulus %d \n", nilai);
+    break;
+  case 80 ... 89:
+    printf("[B] Lulus %d \n", nilai);
+    break;
+  case 90 ... 100:
+    printf("[A] Lulus %d \n", nilai);
+  
+  default:
+    printf("NIAT SEKOLAH NGGAK SIH?\n");
+    break;
+  }
+}
+
 void menu1(mahasiswa* pData, int* pTotalData) {
   int total = *pTotalData;
   int nim;
@@ -32,7 +55,7 @@ void menu1(mahasiswa* pData, int* pTotalData) {
   } else {
     for (int i = 0; i < total; i++) {
       if (mhs[i].nim != nim) {
-        mhs[total].nim;
+        mhs[total].nim = nim;
         printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
         printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
         printf("\nSukses Menambahkan Mahasiswa\n");
@@ -91,7 +114,8 @@ void menu3(mahasiswa* pData, nilaiMahasiswa* pDataNilai, int* pTotalData) {
       nilaiForum = nilai[i].forum * 10 / 100;
       nilaiUas = nilai[i].uas * 50 / 100;
       kalkulasiNilai = nilaiHadir + nilaiTugas + nilaiQuiz + nilaiForum + nilaiUas;
-      printf("NILAI: %d", kalkulasiNilai);
+      // printf("NILAI: %d", kalkulasiNilai);
+      checkGrade(kalkulasiNilai);
       printf("\n\n");
     }
   }
