@@ -19,6 +19,7 @@ void menu1(mahasiswa* pData, int* pTotalData) {
   int nim;
   mahasiswa mhs[10];
   printf("====== INPUT MAHASISWA ======= \n");
+  printf("WARNING: Harap menginputkan Nama dan Mata Kuliah dengan CamelCase. Contoh NandaErliana \n");
   printf("Masukkan NIM: "); scanf("%d", &nim);
   if (total == 0) {
     mhs[total].nim = nim;
@@ -76,7 +77,6 @@ void menu3(mahasiswa* pData, nilaiMahasiswa* pDataNilai, int* pTotalData) {
   nilaiMahasiswa nilai[10];
   mhs[10] = *pData;
   nilai[10] = *pDataNilai;
-  printf("TOTAL %d", total);
   printf("====== NILAI MAHASISWA ======= \n");
   printf("Masukkan NIM: "); scanf("%d", &nim);
   for (int i = 0; i < total; i++) {
