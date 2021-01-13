@@ -16,16 +16,33 @@ typedef struct NilaiMahasiswa {
 
 void menu1(mahasiswa* pData, int* pTotalData) {
   int total = *pTotalData;
+  int nim;
   mahasiswa mhs[10];
   printf("====== INPUT MAHASISWA ======= \n");
-  printf("Masukkan NIM: "); scanf("%d", &mhs[total].nim);
-  printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
-  printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
-
-  printf("\nSukses Menambahkan Mahasiswa\n");
-  *pData = mhs[10];
-  total++;
-  *pTotalData = total;
+  printf("Masukkan NIM: "); scanf("%d", &nim);
+  if (total == 0) {
+    mhs[total].nim = nim;
+    printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
+    printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
+    printf("\nSukses Menambahkan Mahasiswa\n");
+    *pData = mhs[10];
+    total++;
+    *pTotalData = total;
+  } else {
+    for (int i = 0; i < total; i++) {
+      if (mhs[i].nim != nim) {
+        mhs[total].nim;
+        printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
+        printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
+        printf("\nSukses Menambahkan Mahasiswa\n");
+        *pData = mhs[10];
+        total++;
+        *pTotalData = total;
+      } else {
+        printf("NIM yang anda masukkan sudah ada\n");
+      }
+    }
+  }
 }
 
 void menu2(mahasiswa* pData, nilaiMahasiswa* pDataNilai, int* pTotalData) {
@@ -87,16 +104,12 @@ void menu3(mahasiswa* pData, nilaiMahasiswa* pDataNilai, int* pTotalData) {
 }
 
 int main () {
-  // Variable
   int menu;
   int totalData = 0;
   mahasiswa data[10];
   nilaiMahasiswa dataNilai[10];
 
-  // Pointer
   printf("========== PROGRAM MAHASISWA ABAL-ABAL ======== \n");
-
-  // Loop program
   do {
     printf("Menu Program: \n");
     printf("[1] ====> Input data mahasiswa (NIM, Nama, Mata Kuliah) \n");
@@ -123,8 +136,6 @@ int main () {
         break;
     }
   } while (menu != 4);
-
-  printf("\nTekan (Ctrl + C untuk Windows / Cmd + C untuk Mac) untuk keluar \n");
 
   return 0;
 }
