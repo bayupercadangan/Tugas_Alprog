@@ -6,6 +6,14 @@ typedef struct Mahasiswa {
   char *mata_kuliah[20];
 } mahasiswa;
 
+typedef struct NilaiMahasiswa {
+  int hadir;
+  int tugas;
+  int quiz;
+  int forum;
+  int uas;
+} nilaiMahasiswa;
+
 void menu1(mahasiswa* pData, int* pTotalData) {
   int total = *pTotalData;
   mahasiswa mhs[10];
@@ -14,26 +22,32 @@ void menu1(mahasiswa* pData, int* pTotalData) {
   printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
   printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
 
-  printf("\nNIM : %d", mhs[total].nim);
-  printf("\nNama: %s", mhs[total].nama);
-  printf("\nMata Kuliah: %s \n\n\n", mhs[total].mata_kuliah);
+  printf("\nSukses Menambahkan Mahasiswa\n");
   *pData = mhs[10];
   total++;
   *pTotalData = total;
 }
 
-void menu2(mahasiswa* pData, int* pTotalData) {
+void menu2(mahasiswa* pData, nilaiMahasiswa* pDataNilai,  int* pTotalData) {
   int total = *pTotalData;
   mahasiswa mhs[10];
+  nilaiMahasiswa nilai[10];
   mhs[10] = *pData;
-  for (int i = 0; i < total; i++) {
+  printf("====== INPUT NILAI MAHASISWA ======= \n");
+  for (int i = 0; i <= total - 1; i++) {
     printf("NIM: %d \n", mhs[i].nim);
     printf("NAMA: %s \n", mhs[i].nama);
     printf("MATA KULIAH: %s \n", mhs[i].mata_kuliah);
+    printf("Masukkan Nilai Hadir (0-100): "); scanf("%d", &nilai[i].hadir);
+    printf("Masukkan Nilai Tugas (0-100): "); scanf("%d", &nilai[i].tugas);
+    printf("Masukkan Nilai Quiz (0-100): "); scanf("%d", &nilai[i].quiz);
+    printf("Masukkan Nilai Keaktifan Forum (0-100): "); scanf("%d", &nilai[i].forum);
+    printf("Masukkan Nilai UAS (0-100): "); scanf("%d", &nilai[i].uas);
     printf("\n\n");
   }
+  *pDataNilai = nilai[10];
 
-  printf("============================\n");
+  printf("\nSukses Menambahkan Nilai\n");
 }
 
 void menu3() {
@@ -45,6 +59,7 @@ int main () {
   int menu;
   int totalData = 0;
   mahasiswa data[10];
+  nilaiMahasiswa dataNilai[10];
 
   // Pointer
   printf("========== PROGRAM MAHASISWA ABAL-ABAL ======== \n");
@@ -66,7 +81,7 @@ int main () {
         menu1(&data[10], &totalData);
         break;
       case 2:
-        menu2(&data[10], &totalData);
+        menu2(&data[10], &dataNilai[10], &totalData);
         break;
       case 3:
         menu3();
