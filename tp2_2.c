@@ -32,7 +32,6 @@ void checkGrade (int nilai) {
     printf("[A] Lulus %d \n", nilai);
   
   default:
-    printf("NIAT SEKOLAH NGGAK SIH?\n");
     break;
   }
 }
