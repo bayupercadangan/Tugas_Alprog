@@ -28,26 +28,6 @@ void checkGrade (int nilai) {
   } else {
     printf("Nilai %d dapat apa? \n", nilai);
   }
-  // switch (nilai) {
-  // case 50 ... 59:
-  //   printf("[E] Tidak Lulus %d \n", nilai);
-  //   break;
-  // case 60 ... 69:
-  //   printf("[D] Lulus %d \n", nilai);
-  //   break;
-  // case 70 ... 79:
-  //   printf("[C] Lulus %d \n", nilai);
-  //   break;
-  // case 80 ... 89:
-  //   printf("[B] Lulus %d \n", nilai);
-  //   break;
-  // case 90 ... 100:
-  //   printf("[A] Lulus %d \n", nilai);
-  
-  // default:
-  //   printf("NIAT SEKOLAH NGGAK SIH?\n");
-  //   break;
-  // }
 }
 
 void menu1(mahasiswa* pData, int* pTotalData) {
@@ -82,19 +62,6 @@ void menu1(mahasiswa* pData, int* pTotalData) {
       total++;
       *pTotalData = total;
     }
-    // for (int i = 0; i < total; i++) {
-    //   if (mhs[i].nim != nim) {
-    //     mhs[total].nim = nim;
-    //     printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
-    //     printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
-    //     printf("\nSukses Menambahkan Mahasiswa\n");
-    //     *pData = mhs[10];
-    //     total++;
-    //     *pTotalData = total;
-    //   } else {
-    //     printf("NIM yang anda masukkan sudah ada\n");
-    //   }
-    // }
   }
 }
 
