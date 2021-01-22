@@ -15,31 +15,45 @@ typedef struct NilaiMahasiswa {
 } nilaiMahasiswa;
 
 void checkGrade (int nilai) {
-  switch (nilai) {
-  case 50 ... 59:
-    printf("[E] Tidak Lulus %d \n", nilai);
-    break;
-  case 60 ... 69:
-    printf("[D] Lulus %d \n", nilai);
-    break;
-  case 70 ... 79:
-    printf("[C] Lulus %d \n", nilai);
-    break;
-  case 80 ... 89:
-    printf("[B] Lulus %d \n", nilai);
-    break;
-  case 90 ... 100:
+  if (nilai > 90) {
     printf("[A] Lulus %d \n", nilai);
-  
-  default:
-    printf("NIAT SEKOLAH NGGAK SIH?\n");
-    break;
+  } else if (nilai > 80) {
+    printf("[B] Lulus %d \n", nilai);
+  } else if (nilai > 70) {
+    printf("[C] Lulus %d \n", nilai);
+  } else if (nilai > 60) {
+    printf("[D] Lulus %d \n", nilai);
+  } else if (nilai > 50) {
+    printf("[E] Tidak Lulus %d \n", nilai);
+  } else {
+    printf("Nilai %d dapat apa? \n", nilai);
   }
+  // switch (nilai) {
+  // case 50 ... 59:
+  //   printf("[E] Tidak Lulus %d \n", nilai);
+  //   break;
+  // case 60 ... 69:
+  //   printf("[D] Lulus %d \n", nilai);
+  //   break;
+  // case 70 ... 79:
+  //   printf("[C] Lulus %d \n", nilai);
+  //   break;
+  // case 80 ... 89:
+  //   printf("[B] Lulus %d \n", nilai);
+  //   break;
+  // case 90 ... 100:
+  //   printf("[A] Lulus %d \n", nilai);
+  
+  // default:
+  //   printf("NIAT SEKOLAH NGGAK SIH?\n");
+  //   break;
+  // }
 }
 
 void menu1(mahasiswa* pData, int* pTotalData) {
   int total = *pTotalData;
   int nim;
+  int isSame;
   mahasiswa mhs[10];
   printf("====== INPUT MAHASISWA ======= \n");
   printf("WARNING: Harap menginputkan Nama dan Mata Kuliah dengan CamelCase. Contoh NandaErliana \n");
@@ -54,18 +68,33 @@ void menu1(mahasiswa* pData, int* pTotalData) {
     *pTotalData = total;
   } else {
     for (int i = 0; i < total; i++) {
-      if (mhs[i].nim != nim) {
-        mhs[total].nim = nim;
-        printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
-        printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
-        printf("\nSukses Menambahkan Mahasiswa\n");
-        *pData = mhs[10];
-        total++;
-        *pTotalData = total;
-      } else {
+      if (mhs[i].nim == nim) {
+        isSame = 1;
         printf("NIM yang anda masukkan sudah ada\n");
       }
     }
+    if (isSame == 0) {
+      mhs[total].nim = nim;
+      printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
+      printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
+      printf("\nSukses Menambahkan Mahasiswa\n");
+      *pData = mhs[10];
+      total++;
+      *pTotalData = total;
+    }
+    // for (int i = 0; i < total; i++) {
+    //   if (mhs[i].nim != nim) {
+    //     mhs[total].nim = nim;
+    //     printf("Masukkan Nama: "); scanf("%255s", mhs[total].nama);
+    //     printf("Masukkan Mata Kuliah: "); scanf("%255s", mhs[total].mata_kuliah);
+    //     printf("\nSukses Menambahkan Mahasiswa\n");
+    //     *pData = mhs[10];
+    //     total++;
+    //     *pTotalData = total;
+    //   } else {
+    //     printf("NIM yang anda masukkan sudah ada\n");
+    //   }
+    // }
   }
 }
 
@@ -114,7 +143,6 @@ void menu3(mahasiswa* pData, nilaiMahasiswa* pDataNilai, int* pTotalData) {
       nilaiForum = nilai[i].forum * 10 / 100;
       nilaiUas = nilai[i].uas * 50 / 100;
       kalkulasiNilai = nilaiHadir + nilaiTugas + nilaiQuiz + nilaiForum + nilaiUas;
-      // printf("NILAI: %d", kalkulasiNilai);
       checkGrade(kalkulasiNilai);
       printf("\n\n");
     }
